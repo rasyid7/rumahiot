@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, Text} from 'react-native';
 import { Container, Button } from 'native-base'
 import * as firebase from 'firebase'
-import Loading from './Loading'
 
 export default class Main extends React.Component {
 
     state = { currentUser: null }
+    userID = firebase.auth().currentUser.uid
     componentDidMount() {
       const { currentUser } = firebase.auth()
       this.setState({ currentUser })
@@ -20,12 +20,11 @@ export default class Main extends React.Component {
             console.log(e);
         }
     }
-    componentWillMount() {
-        // const { currentUser } = this.state
-        firebase.database().ref('users/001').set(
+
+    test() {
+        firebase.database().ref('users/'+ userID).update(
             {
-                name: 'Ragiel',
-                age: 24
+                count : 2
             }
         )
     }
@@ -41,7 +40,7 @@ export default class Main extends React.Component {
                 full
                 rounded
                 primary
-                onPress = {() => this.componentWillMount()}
+                onPress = {() => this.test()}
             >
                 <Text style={{color:'white'}}>Add Firebase</Text>
             </Button>

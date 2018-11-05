@@ -6,7 +6,8 @@ import { Container, Content, Header, Form, Input, Item, Button, Label } from 'na
 import { SwitchNavigator } from 'react-navigation'
 
 import Main from './src/Main'
-import Auth from './src/user/Auth'
+import Login from './src/user/Login'
+import SignUp from './src/user/SignUp'
 import Loading from './src/Loading'
 
 const firebaseConfig = {
@@ -23,7 +24,8 @@ firebase.initializeApp(firebaseConfig);
 const App = SwitchNavigator(
   {
     Loading,
-    Auth,
+    Login,
+    SignUp,
     Main
   },
   {

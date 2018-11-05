@@ -4,8 +4,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import * as firebase from 'firebase'
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 
-
-export default class Auth extends React.Component {
+export default class Login extends React.Component {
 
     constructor(props){
       super(props)
@@ -13,24 +12,14 @@ export default class Auth extends React.Component {
       this.state = ({
         email: '',
         password: '',
-        loading: false
+        loading: false,
+        angka: ''
       })
     }  
   
     signUpUser() {
-  
-      this.setState({ loading: true })
-  
-      const{email,password} = this.state
-      firebase.auth().createUserWithEmailAndPassword(email,password)
-      .then(() => {
-        this.setState({loading:false})
-        this.props.navigation.navigate('Main')
-      })
-      .catch(() =>{
-        alert('Authentication Error.')
-        this.setState({loading:false})
-      })
+
+      this.props.navigation.navigate('SignUp')
     }
 
     logInUser() {
@@ -61,7 +50,8 @@ export default class Auth extends React.Component {
 
     return(
 
-    <Form>
+      <Form>
+
       <Item floatingLabel>
         <Label>Email</Label>
         <Input
@@ -94,7 +84,7 @@ export default class Auth extends React.Component {
         full
         rounded
         primary
-        onPress = {() => this.signUpUser(this.state.email,this.state.password)}
+        onPress = {() => this.signUpUser()}
       >
         <Text style={{color:'white'}}>Sign Up</Text>
       </Button>
