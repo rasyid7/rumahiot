@@ -1,0 +1,73 @@
+
+
+    // try{
+
+    //   if(this.state.password.length < 4){
+    //     alert("Password is too weak!")
+    //     this.setState({
+    //       loading: false
+    //     })
+    //     return;
+    //   }
+
+    //   else{
+    //     firebase.auth().createUserWithEmailAndPassword(email,password)}
+    // }
+    
+    // catch(error){
+    //   console.log('test log')
+    //   errorCode = firebase.error.code
+    //   errorMessage = firebase.error.code
+      
+    //   if (errorCode == 'auth/email-already-in-use') {
+    //     alert('The email is already in use.');
+    //   } else if (errorCode == 'auth/invalid-email'){
+    //     alert('Invalid Email Address!');
+    //   }
+
+    //   console.log(error)
+    // }
+
+
+
+    .catch(function(error) {
+      errorCode = error.code
+      errorMessage = error.message
+      if (errorCode == 'auth/email-already-in-use') {
+        alert('The email is already in use.')
+      }
+      else if (errorCode == 'auth/invalid-email') {
+        alert('The email is invalid.')
+      }
+      else if (errorCode == 'auth/weak-password') {
+        alert('The password is too weak.')
+      } else {
+        alert(errorMessage)
+      }
+      console.log(error)
+    })
+
+
+
+
+
+
+firebase rules
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "microcontroller": {
+      ".read": false,
+      ".write": false
+    },
+    "app": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('active').val() == true",
+      ".write": "auth != null && root.child('users').child(auth.uid).child('active').val() == true"
+    }
+  }
+}
