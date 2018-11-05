@@ -25,6 +25,7 @@ export default class Main extends React.Component {
         firebase.database().ref('users/001').set(
             {
                 name: 'Ragiel',
+                age: 23
             }
         )
     }
