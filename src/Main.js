@@ -6,7 +6,6 @@ import * as firebase from 'firebase'
 export default class Main extends React.Component {
 
     state = { currentUser: null }
-    userID = firebase.auth().currentUser.uid
     componentDidMount() {
       const { currentUser } = firebase.auth()
       this.setState({ currentUser })
@@ -22,9 +21,10 @@ export default class Main extends React.Component {
     }
 
     test() {
+        userID = firebase.auth().currentUser.uid
         firebase.database().ref('users/'+ userID).update(
             {
-                count : 2
+                angka : 2
             }
         )
     }
