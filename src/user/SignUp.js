@@ -13,8 +13,7 @@ export default class SignUp extends React.Component {
         name: '',
         email: '',
         password: '',
-        loading: false,
-        angka: ''
+        loading: false
       })
     }  
   
@@ -28,11 +27,10 @@ export default class SignUp extends React.Component {
       .then(() => {
         const userID = firebase.auth().currentUser.uid
         this.setState({loading:false})
-        firebase.database().ref('users/'+userID).set(
+        firebase.database().ref('users/' + userID + '/id/').set(
           {
               name: name,
-              age: 24,
-              angka: 1
+              age: 24
           }
         )
         this.props.navigation.navigate('Main')

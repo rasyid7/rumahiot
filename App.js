@@ -9,6 +9,7 @@ import Main from './src/Main'
 import Login from './src/user/Login'
 import SignUp from './src/user/SignUp'
 import Loading from './src/Loading'
+import addItem from './src/AddItem'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBwIKkPKiujU9oULyJ9ZPt8WibmGCql_oQ",
@@ -26,7 +27,8 @@ const App = SwitchNavigator(
     Loading,
     Login,
     SignUp,
-    Main
+    Main,
+    addItem
   },
   {
     initialRouteName: 'Loading'

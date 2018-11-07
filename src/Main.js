@@ -20,13 +20,8 @@ export default class Main extends React.Component {
         }
     }
 
-    test() {
-        userID = firebase.auth().currentUser.uid
-        firebase.database().ref('users/'+ userID).update(
-            {
-                angka : 3
-            }
-        )
+    addItem() {
+        this.props.navigation.navigate('addItem');
     }
 
     render() {
@@ -40,9 +35,9 @@ export default class Main extends React.Component {
                 full
                 rounded
                 primary
-                onPress = {() => this.test()}
+                onPress = {() => this.addItem()}
             >
-                <Text style={{color:'white'}}>Add Firebase</Text>
+                <Text style={{color:'white'}}>Add Item</Text>
             </Button>
             <Button style={{marginTop : 20}}
                 full

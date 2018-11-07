@@ -15,7 +15,7 @@ export default class Login extends React.Component {
         loading: false,
         angka: ''
       })
-    }  
+    }
   
     signUpUser() {
 
