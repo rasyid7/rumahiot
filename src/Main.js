@@ -24,7 +24,7 @@ export default class Main extends React.Component {
         userID = firebase.auth().currentUser.uid
         firebase.database().ref('users/'+ userID).update(
             {
-                angka : 2
+                angka : 3
             }
         )
     }
