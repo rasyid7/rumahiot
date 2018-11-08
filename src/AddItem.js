@@ -23,18 +23,24 @@ export default class addItem extends React.Component {
     addItem() {
         userID = firebase.auth().currentUser.uid
         chipID = this.state.chipID
-        firebase.database().ref('users/' + userID + '/devices/' + chipID).set(
-            {
-                item: 'New Item'
-            }
-        )
+
+        if (chipID != '') {
+            firebase.database().ref('users/' + userID + '/devices/' + chipID).set(
+                {
+                    item: 'New Item'
+                }
+            )
+        }
+        else{
+            alert('Please Input ChipID.')
+        }
         this.props.navigation.navigate('Main')
     }
 
     render() {
 
         return (
-            <Container style = {styles.container}>
+            <Container style={styles.container}>
                 <Form>
 
                     <Text>This is the Page to Add new Item. You need to know the Chip ID</Text>

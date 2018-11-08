@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import * as firebase from 'firebase'
-import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
+import { Container, Form, Input, Item, Button, Label } from 'native-base'
 
 export default class SignUp extends React.Component {
 
