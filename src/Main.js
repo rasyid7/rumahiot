@@ -2,15 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, Switch } from 'react-native';
 import { Container, Button } from 'native-base'
 import * as firebase from 'firebase'
-
 export default class Main extends React.Component {
 
     constructor() {
+
         super()
         this.state = {
             currentUser: null,
             switchVal: false,
-            stores: 'test'
+            devicename: 'test',
+            chipid: 123456
         }
 
         // this.database = this.Main.database().ref().child('devices')
@@ -18,19 +19,26 @@ export default class Main extends React.Component {
 
     componentDidMount() {
         const { currentUser } = firebase.auth()
-        const userID = firebase.auth().currentUser.uid
         this.setState({ currentUser })
-        firebase.database().ref('users/' + userID + '/devices/').on('value', function (snapshot) {
-            // this.setState({ stores: snapshot.val() })
-            console.log(snapshot.val())
+        const userID = firebase.auth().currentUser.uid
+        firebase.database().ref('users/' + userID + '/devices/' + this.state.chipid).on('value', (snapshot) => {
+            devicename = (snapshot.val().item)
+            console.log(devicename)
+            this.setState({
+                devicename: devicename
+            })
         })
     }
 
     ToggleSwitch(value) {
 
+        const userID = firebase.auth().currentUser.uid
         this.setState({
-            switchVal: value
+            switchVal: value,
         })
+        firebase.database().ref('users/' + userID + '/devices/' + this.state.chipid).update({
+            state: !this.state.switchVal
+        });
     }
 
     signOutUser = async () => {
@@ -53,7 +61,7 @@ export default class Main extends React.Component {
                 <Text>Hello, this is the main page!</Text>
                 <Text>Hi {currentUser && currentUser.email}!</Text>
 
-                <Text>{this.state.stores}</Text>
+                <Text>{this.state.devicename}</Text>
 
                 <Switch
                     onValueChange={(value) => this.ToggleSwitch(value)}
