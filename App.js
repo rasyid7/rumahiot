@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import { SwitchNavigator } from 'react-navigation'
+import { StackNavigator, DrawerNavigator } from 'react-navigation'
 
 import Main from './src/Main'
 import Login from './src/user/Login'
@@ -18,16 +18,21 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const App = SwitchNavigator(
+const App = StackNavigator(
   {
-    Loading,
-    Login,
-    SignUp,
-    Main,
-    addItem
+    Loading: {screen: Loading},
+    Login: {screen: Login},
+    SignUp: {screen: SignUp},
+    Main: {screen: Main, navigationOptions: {
+      title: 'Dashboard',
+      headerLeft: null,
+      gesturesEnabled: false
+  }},
+    addItem: {screen: addItem}
   },
   {
     initialRouteName: 'Loading'
   }
 )
+
 export default App

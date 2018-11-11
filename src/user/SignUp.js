@@ -4,7 +4,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import * as firebase from 'firebase'
 import { Container, Form, Input, Item, Button, Label } from 'native-base'
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
 
     constructor(props){
       super(props)
@@ -119,5 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     padding : 10
-  },
-});
+  }
+})
+
+export default SignUp
