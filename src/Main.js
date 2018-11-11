@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, Switch, View, ListView } from 'react-native';
 import { Container, Button, Left, Header, Icon } from 'native-base'
 import * as firebase from 'firebase'
-import { DrawerNavigator } from 'react-navigation'
+import { DrawerNavigator, StackNavigator } from 'react-navigation'
 
 import addItem from './AddItem'
+import Login from './user/Login';
 
 class Main extends React.Component {
 
@@ -19,6 +20,7 @@ class Main extends React.Component {
     _isMounted = false
 
     componentDidMount() {
+
         this._isMounted = true
         const { currentUser } = firebase.auth()
         this.setState({ currentUser })
@@ -110,15 +112,15 @@ class Main extends React.Component {
 const Drawer = DrawerNavigator({
 
     Main: {
-      screen: Main,
-      navigationOptions: {
-          title: 'Dashboard',
-      }
+        screen: Main
     },
     Settings: {
-      screen: addItem
+        screen: addItem
     },
-  })
+    LogOut: {
+        screen: Login,
+    }
+})
 
 const styles = StyleSheet.create({
     container: {

@@ -21,8 +21,14 @@ firebase.initializeApp(firebaseConfig);
 const App = StackNavigator(
   {
     Loading: {screen: Loading},
-    Login: {screen: Login},
-    SignUp: {screen: SignUp},
+    Login: {screen: Login, navigationOptions: {
+      title: 'Login',
+      headerLeft: null,
+      gesturesEnabled: false
+  }},
+    SignUp: {screen: SignUp, navigationOptions: {
+      title: 'SignUp'
+  }},
     Main: {screen: Main, navigationOptions: {
       title: 'Dashboard',
       headerLeft: null,

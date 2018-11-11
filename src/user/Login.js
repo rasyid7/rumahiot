@@ -6,12 +6,6 @@ import { Container, Content, Header, Form, Input, Item, Button, Label } from 'na
 
 class Login extends React.Component {
 
-  static navigationOptions = {
-      title: 'Login',
-      headerLeft: null,
-      gesturesEnabled: false
-  }
-
   constructor(props) {
     super(props)
 
